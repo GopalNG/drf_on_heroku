@@ -28,15 +28,17 @@ class bdDetails(generics.ListAPIView):
 
 class BankDetailsFilter(filters.FilterSet):
     city = filters.CharFilter('city')
-    bank_name = filters.CharFilter('bankname')
+    bank_name = filters.CharFilter('bank_name')
     class Meta:
         model = Bank_Details
-        fields =('city','bank_name')
+        fields =('city','bank_name',)
 
 class BankDetailsListView(generics.ListAPIView):
     serializer_class = Bank_Details_serializer
     queryset = Bank_Details.objects.all()
 
-    filter_backends =(DjangoFilterBackend,SearchFilter)
-    filter_class = BankDetailsFilter
-    search_fields=('city','bank_name')
+    filter_backends =(DjangoFilterBackend,SearchFilter) #fields form djano filter
+
+    filter_class = BankDetailsFilter #custom filter class
+
+    search_fields=('bank_name',)
