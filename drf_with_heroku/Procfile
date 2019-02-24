@@ -1,1 +1,0 @@
-web: gunicorn .\drf_with_heroku.wsgi --log-file -
